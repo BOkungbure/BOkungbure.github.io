@@ -393,12 +393,13 @@ RETURN
           <article class="card project">
             <h3><a href="https://github.com/BOkungbure/name_generator_duckdb" target="_blank" rel="noopener">Name Generator → Sales Analytics Pipeline ↗</a></h3>
             <p class="muted">
-              An end-to-end pipeline that generates synthetic customers and sales every day, appends them to a
-              cloud Postgres database, and builds tested dbt models ready for reporting.
+              An end-to-end analytics project, from raw data to dashboard. It generates synthetic customers and
+              sales every day, appends them to a cloud Postgres database, builds tested dbt models, and feeds
+              the live <a href="#powerbi">Sales Trend</a> Power BI report.
             </p>
             <figure class="diagram">
               <svg viewBox="-2 -2 484 318" role="img" aria-labelledby="dg1-title">
-                <title id="dg1-title">Pipeline: Windows Task Scheduler runs daily. Python and Faker generate CSV batches, a Python loader appends them to Neon Postgres, then dbt builds staging views and marts, using a product seed and price-history snapshots.</title>
+                <title id="dg1-title">Pipeline: Windows Task Scheduler runs daily. Python and Faker generate CSV batches, a Python loader appends them to Neon Postgres, then dbt builds staging views and marts, using a product seed and price-history snapshots. The Power BI Sales Trend report imports the staging views.</title>
                 <defs>
                   <marker id="dg1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker>
                 </defs>
@@ -418,7 +419,7 @@ RETURN
                 <!-- row 2 -->
                 <g class="dg-node"><rect x="340" y="188" width="140" height="52"/><text x="410" y="210" text-anchor="middle">Neon Postgres</text><text class="dg-sub" x="410" y="227" text-anchor="middle">raw schema</text></g>
                 <g class="dg-node"><rect x="170" y="188" width="140" height="52"/><text x="240" y="210" text-anchor="middle">Staging views</text><text class="dg-sub" x="240" y="227" text-anchor="middle">clean &amp; typed</text></g>
-                <g class="dg-node dg-key"><rect x="10" y="188" width="130" height="52"/><text x="75" y="210" text-anchor="middle">Marts</text><text class="dg-sub" x="75" y="227" text-anchor="middle">sales summaries</text></g>
+                <g class="dg-node"><rect x="10" y="188" width="130" height="52"/><text x="75" y="210" text-anchor="middle">Marts</text><text class="dg-sub" x="75" y="227" text-anchor="middle">sales summaries</text></g>
                 <line class="dg-edge" x1="340" y1="214" x2="312" y2="214" marker-end="url(#dg1-arrow)"/>
                 <line class="dg-edge" x1="170" y1="214" x2="142" y2="214" marker-end="url(#dg1-arrow)"/>
                 <!-- seed + snapshots -->
@@ -426,15 +427,19 @@ RETURN
                 <g class="dg-pill"><rect x="10" y="270" width="130" height="30"/><text x="75" y="289.5" text-anchor="middle">Price snapshots</text></g>
                 <line class="dg-edge" x1="240" y1="270" x2="240" y2="242" marker-end="url(#dg1-arrow)"/>
                 <line class="dg-edge" x1="170" y1="285" x2="142" y2="285" marker-end="url(#dg1-arrow)"/>
+                <!-- Power BI: imports the staging views -->
+                <g class="dg-node dg-key"><rect x="340" y="258" width="140" height="52"/><text x="410" y="280" text-anchor="middle">Power BI</text><text class="dg-sub" x="410" y="297" text-anchor="middle">Sales Trend report</text></g>
+                <path class="dg-edge" d="M310 230 H328 V284 H338" marker-end="url(#dg1-arrow)"/>
               </svg>
             </figure>
             <ul>
               <li><b>Daily automation:</b> Task Scheduler generates 1,000 customers and 5,000 transactions, loads them and runs <code>dbt build</code>.</li>
               <li><b>Safe, retryable loads:</b> single-transaction batches with uniqueness and foreign key checks.</li>
               <li><b>dbt modelling:</b> staging views, sales marts, YAML docs, tests and snapshots for product price history.</li>
-              <li><b>Reporting:</b> the output feeds my <a href="#powerbi">Sales Trend Power BI report</a>.</li>
+              <li><b>Power BI reporting:</b> the <a href="#powerbi">Sales Trend</a> report imports the dbt staging views from Neon into a star schema (sales, customers, products, date). It covers sales, customer and product performance.</li>
+              <li><b>Self-documenting model:</b> a Model Info page lists every measure, relationship and table, read live from the model.</li>
             </ul>
-            <ul class="tags"><li>Python</li><li>SQL</li><li>dbt</li><li>PostgreSQL</li><li>DuckDB</li><li>PowerShell</li><li>pytest</li></ul>
+            <ul class="tags"><li>Python</li><li>SQL</li><li>dbt</li><li>PostgreSQL</li><li>Power BI</li><li>DAX</li><li>DuckDB</li><li>PowerShell</li><li>pytest</li></ul>
           </article>
 
           <article class="card project">
