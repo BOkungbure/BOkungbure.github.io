@@ -123,6 +123,35 @@
       update();
     }
 
+    // ---- Minimal code highlighting (bold keywords, italic strings, faded comments) ----
+    var KW = {
+      sql: "select|from|where|with|as|group|by|order|desc|asc|join|left|inner|on|and|or|not|insert|into|values|conflict|do|nothing|count|sum|avg|min|max|round|distinct",
+      python: "with|as|if|return|raise|import|from|def|for|in|not|and|or|None|True|False|print",
+      dax: "VAR|RETURN|TRUE|FALSE"
+    };
+    var esc = function (s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
+    Array.prototype.forEach.call(document.querySelectorAll("code[data-lang]"), function (el) {
+      var lang = el.getAttribute("data-lang");
+      var parts = [
+        "(--[^\\n]*|#[^\\n]*|//[^\\n]*)",                          // 1 comments
+        "(f?\"\"\"[\\s\\S]*?\"\"\"|f?\"[^\"\\n]*\"|'[^'\\n]*')",   // 2 strings
+        "(\\[[^\\]\\n]+\\])",                                       // 3 DAX column / measure refs
+        "\\b(" + KW[lang] + ")\\b",                                 // 4 keywords
+        "\\b([A-Z][A-Z0-9]+)(?=\\s*\\()"                            // 5 DAX functions
+      ];
+      if (lang !== "python") parts[0] = "(--[^\\n]*|//[^\\n]*)";
+      if (lang === "python") parts[0] = "(#[^\\n]*)";
+      var re = new RegExp(parts.join("|"), lang === "sql" ? "gi" : "g");
+      var src = el.textContent, out = "", last = 0, m;
+      while ((m = re.exec(src))) {
+        out += esc(src.slice(last, m.index));
+        var cls = m[1] ? "com" : m[2] ? "str" : m[3] ? (lang === "dax" ? "ref" : "") : m[4] ? "kw" : "fn";
+        out += cls ? '<span class="tk-' + cls + '">' + esc(m[0]) + "</span>" : esc(m[0]);
+        last = re.lastIndex;
+      }
+      el.innerHTML = out + esc(src.slice(last));
+    });
+
     var year = document.querySelector("[data-year]");
     if (year) year.textContent = new Date().getFullYear();
   });

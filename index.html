@@ -118,11 +118,63 @@
             <h3>SQL <span class="level">Advanced</span></h3>
             <div class="meter"><i style="width:92%"></i></div>
             <p class="muted">Star schema design, query and ETL optimisation, data validation. SQL Server, Azure SQL and PostgreSQL.</p>
+            <details class="snippet">
+              <summary>See it in my code</summary>
+              <p class="snippet-cap">A dbt mart that rolls each customer's full purchase history into one row: lifetime value, order count and first and last order dates.<span class="muted"> Lightly trimmed for length.</span></p>
+<pre><code data-lang="sql">-- Mart: one row per customer, powering "top customers" reporting.
+with customer_sales as (
+    select * from {{ ref('customer_sales') }}
+)
+
+select
+    user_id,
+    full_name,
+    state,
+    count(transaction_id)          as transaction_count,
+    sum(quantity)                  as total_items_purchased,
+    round(sum(total_amount), 2)    as lifetime_value,
+    round(avg(total_amount), 2)    as avg_order_value,
+    min(order_date)                as first_order_date,
+    max(order_date)                as last_order_date
+from customer_sales
+group by 1, 2, 3
+order by lifetime_value desc</code></pre>
+              <a class="snippet-link" href="https://github.com/BOkungbure/name_generator_duckdb/blob/main/models/marts/customer_sales_summary.sql" target="_blank" rel="noopener">customer_sales_summary.sql on GitHub ↗</a>
+            </details>
           </article>
           <article class="card skill-card">
             <h3>DAX <span class="level">Advanced</span></h3>
             <div class="meter"><i style="width:90%"></i></div>
             <p class="muted">KPI measures, time intelligence, what-if parameters and risk-based reporting logic in Power BI.</p>
+            <details class="snippet">
+              <summary>See it in my code</summary>
+              <p class="snippet-cap">From my Financial Dashboard. One measure drives the whole income statement: detail rows show operating income, and subtotal rows show a running total down the P&amp;L. A second measure adds month-over-month change.<span class="muted"> Lightly trimmed for length.</span></p>
+<pre><code data-lang="dax">P&amp;L Amount =
+VAR vRT =
+    CALCULATE (
+        [Operating Income],
+        FILTER (
+            ALL ( dAccountHeader ),
+            dAccountHeader[HeaderID] &lt;= MAX ( dAccountHeader[HeaderID] )
+        )
+    )
+VAR vSubTotal = MAX ( dAccountHeader[Subtotal] )
+VAR vSubHeaderScope = ISINSCOPE ( dAccount[Subheader Account] )
+RETURN
+    SWITCH (
+        vSubTotal,
+        0, [Operating Income],
+        1, IF ( vSubHeaderScope, BLANK (), vRT ),
+        BLANK ()
+    )
+
+MoM Change % =
+VAR vPrevMonth =
+    CALCULATE ( [P&amp;L Amount], DATEADD ( 'Date'[Date], -1, MONTH ) )
+RETURN
+    DIVIDE ( [P&amp;L Amount] - vPrevMonth, ABS ( vPrevMonth ) )</code></pre>
+              <a class="snippet-link" href="#powerbi">See these measures in the live report ↓</a>
+            </details>
           </article>
           <article class="card skill-card">
             <h3>Power Query (M) <span class="level">Advanced</span></h3>
@@ -133,6 +185,39 @@
             <h3>Python <span class="level">Intermediate</span></h3>
             <div class="meter"><i style="width:70%"></i></div>
             <p class="muted">API scripts, data generation and loading pipelines, analysis in Jupyter with pandas and Matplotlib.</p>
+            <details class="snippet">
+              <summary>See it in my code</summary>
+              <p class="snippet-cap">The daily loader makes each run safe to repeat. If a batch is already loaded, it skips it. If a half-loaded batch doesn't match, it stops rather than mixing data. Everything runs in one database transaction.<span class="muted"> Lightly trimmed for length.</span></p>
+<pre><code data-lang="python">with psycopg.connect(**_connection_settings()) as connection:
+    with connection.cursor() as cursor:
+        _ensure_raw_tables(cursor)
+        cursor.execute(
+            """
+            SELECT
+                (SELECT count(*) FROM raw.names WHERE source_batch_id = %s),
+                (SELECT count(*) FROM raw.sales_transactions WHERE source_batch_id = %s)
+            """,
+            (batch_date, batch_date),
+        )
+        existing_names, existing_transactions = cursor.fetchone()
+        if existing_names or existing_transactions:
+            if (existing_names, existing_transactions) == (len(names), len(transactions)):
+                print(f"Batch {batch_date} already loaded; skipping.")
+                return
+            raise RuntimeError(
+                f"Batch {batch_date} exists with different row counts. No rows were loaded."
+            )
+
+        cursor.executemany(
+            f"""
+            INSERT INTO raw.names ({", ".join(NAME_COLUMNS)})
+            VALUES ({name_placeholders})
+            ON CONFLICT (source_batch_id, source_row_number) DO NOTHING
+            """,
+            names,
+        )</code></pre>
+              <a class="snippet-link" href="https://github.com/BOkungbure/name_generator_duckdb/blob/main/scripts/load_to_neon.py#L162-L218" target="_blank" rel="noopener">load_to_neon.py on GitHub ↗</a>
+            </details>
           </article>
           <article class="card skill-card">
             <h3>VBA <span class="level">Intermediate</span></h3>
