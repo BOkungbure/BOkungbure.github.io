@@ -46,6 +46,5 @@ GitHub Pages redeploys automatically.
 
 1. In the Power BI Service, open the report and choose **File → Embed report → Publish to web (public)**. Copy the `src` URL from the iframe code.
 2. In `index.html`, find the `REPORT SLIDE` comment. Copy one `<article class="slide">` block, paste it inside the carousel, and change the title, description, tags and both URLs (`src` and `href`). The dots and arrows update automatically.
-3. Delete the "More reports coming soon" placeholder slide once you have a second report.
 
 Publish to web makes the report and its data **public**. Only use public or synthetic data.

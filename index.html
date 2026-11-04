@@ -354,19 +354,23 @@ RETURN
         </article>
         <!-- ===== END REPORT SLIDE ===== -->
 
-        <!-- Placeholder: delete this slide once you have a second report. -->
         <article class="slide">
           <div class="slide-inner">
-            <div class="embed placeholder">
-              <div>
-                <b>More reports coming soon</b>
-                <span>New Power BI work is added here as it's published.</span>
-              </div>
+            <div class="embed">
+              <iframe title="Sales Trend" loading="lazy" allowfullscreen
+                src="https://app.powerbi.com/view?r=eyJrIjoiOWFjODA3NjUtNGY5Mi00ODk3LWE3MzAtMDk1NTg3ZDJmOWFiIiwidCI6IjFiYjY1Y2MxLTcxMDItNGRlYi05Y2FlLTVlODljMjE5MjMzNCJ9"></iframe>
             </div>
             <div class="slide-text">
-              <h3>Next report</h3>
-              <p class="muted">Want to see something specific? Reports from professional roles contain confidential data and aren't published, but I'm happy to walk through them in an interview.</p>
-              <a class="ext-link" href="#contact">Get in touch →</a>
+              <h3>Sales Trend</h3>
+              <p class="muted">
+                A four-page sales report built on my own
+                <a href="#projects">Name Generator pipeline</a>, reading dbt staging views live from Neon Postgres.
+                It covers sales overview (revenue, orders, average order value, payment methods, regions),
+                customers (demographics, new customers by month, top customers) and product performance.
+                A final Model Info page documents every measure and relationship, read live from the model.
+              </p>
+              <ul class="tags"><li>Star schema</li><li>USERELATIONSHIP</li><li>REMOVEFILTERS</li><li>Self-documenting model</li><li>Postgres source</li></ul>
+              <a class="ext-link" href="https://app.powerbi.com/view?r=eyJrIjoiOWFjODA3NjUtNGY5Mi00ODk3LWE3MzAtMDk1NTg3ZDJmOWFiIiwidCI6IjFiYjY1Y2MxLTcxMDItNGRlYi05Y2FlLTVlODljMjE5MjMzNCJ9" target="_blank" rel="noopener">Open full screen ↗</a>
             </div>
           </div>
         </article>
@@ -428,6 +432,7 @@ RETURN
               <li><b>Daily automation:</b> Task Scheduler generates 1,000 customers and 5,000 transactions, loads them and runs <code>dbt build</code>.</li>
               <li><b>Safe, retryable loads:</b> single-transaction batches with uniqueness and foreign key checks.</li>
               <li><b>dbt modelling:</b> staging views, sales marts, YAML docs, tests and snapshots for product price history.</li>
+              <li><b>Reporting:</b> the output feeds my <a href="#powerbi">Sales Trend Power BI report</a>.</li>
             </ul>
             <ul class="tags"><li>Python</li><li>SQL</li><li>dbt</li><li>PostgreSQL</li><li>DuckDB</li><li>PowerShell</li><li>pytest</li></ul>
           </article>
