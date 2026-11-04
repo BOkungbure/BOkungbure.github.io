@@ -300,18 +300,45 @@
           <h2>Personal projects</h2>
           <p class="muted">Hands-on work as I grow from data analysis into analytics engineering. All code is on GitHub.</p>
         </div>
-        <div class="grid grid-2" style="align-items:start">
+        <div class="grid projects-list">
           <article class="card project">
             <h3><a href="https://github.com/BOkungbure/name_generator_duckdb" target="_blank" rel="noopener">Name Generator → Sales Analytics Pipeline ↗</a></h3>
             <p class="muted">
               An end-to-end pipeline that generates synthetic customers and sales every day, appends them to a
               cloud Postgres database, and builds tested dbt models ready for reporting.
             </p>
-<div class="arch">Python/Faker ─► CSV batches ─► loader ─► Neon
-                                        │
-                          dbt sources + product seed
-                                        │
-                          staging views ─► marts</div>
+            <figure class="diagram">
+              <svg viewBox="-2 -2 484 318" role="img" aria-labelledby="dg1-title">
+                <title id="dg1-title">Pipeline: Windows Task Scheduler runs daily. Python and Faker generate CSV batches, a Python loader appends them to Neon Postgres, then dbt builds staging views and marts, using a product seed and price-history snapshots.</title>
+                <defs>
+                  <marker id="dg1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker>
+                </defs>
+                <!-- schedule band -->
+                <rect class="dg-band" x="0" y="0" width="480" height="26"/>
+                <text class="dg-band-text" x="240" y="17.5" text-anchor="middle">WINDOWS TASK SCHEDULER · RUNS DAILY</text>
+                <!-- row 1 -->
+                <g class="dg-node"><rect x="0" y="46" width="140" height="52"/><text x="70" y="68" text-anchor="middle">Python + Faker</text><text class="dg-sub" x="70" y="85" text-anchor="middle">generate data</text></g>
+                <g class="dg-node"><rect x="170" y="46" width="140" height="52"/><text x="240" y="68" text-anchor="middle">CSV batches</text><text class="dg-sub" x="240" y="85" text-anchor="middle">1k customers · 5k sales</text></g>
+                <g class="dg-node"><rect x="340" y="46" width="140" height="52"/><text x="410" y="68" text-anchor="middle">Python loader</text><text class="dg-sub" x="410" y="85" text-anchor="middle">retry-safe append</text></g>
+                <line class="dg-edge" x1="140" y1="72" x2="168" y2="72" marker-end="url(#dg1-arrow)"/>
+                <line class="dg-edge" x1="310" y1="72" x2="338" y2="72" marker-end="url(#dg1-arrow)"/>
+                <line class="dg-edge" x1="410" y1="98" x2="410" y2="186" marker-end="url(#dg1-arrow)"/>
+                <!-- dbt group -->
+                <rect class="dg-group" x="-1" y="164" width="321" height="150"/>
+                <text class="dg-group-text" x="10" y="181">dbt · tested models</text>
+                <!-- row 2 -->
+                <g class="dg-node"><rect x="340" y="188" width="140" height="52"/><text x="410" y="210" text-anchor="middle">Neon Postgres</text><text class="dg-sub" x="410" y="227" text-anchor="middle">raw schema</text></g>
+                <g class="dg-node"><rect x="170" y="188" width="140" height="52"/><text x="240" y="210" text-anchor="middle">Staging views</text><text class="dg-sub" x="240" y="227" text-anchor="middle">clean &amp; typed</text></g>
+                <g class="dg-node dg-key"><rect x="10" y="188" width="130" height="52"/><text x="75" y="210" text-anchor="middle">Marts</text><text class="dg-sub" x="75" y="227" text-anchor="middle">sales summaries</text></g>
+                <line class="dg-edge" x1="340" y1="214" x2="312" y2="214" marker-end="url(#dg1-arrow)"/>
+                <line class="dg-edge" x1="170" y1="214" x2="142" y2="214" marker-end="url(#dg1-arrow)"/>
+                <!-- seed + snapshots -->
+                <g class="dg-pill"><rect x="170" y="270" width="140" height="30"/><text x="240" y="289.5" text-anchor="middle">Product seed</text></g>
+                <g class="dg-pill"><rect x="10" y="270" width="130" height="30"/><text x="75" y="289.5" text-anchor="middle">Price snapshots</text></g>
+                <line class="dg-edge" x1="240" y1="270" x2="240" y2="242" marker-end="url(#dg1-arrow)"/>
+                <line class="dg-edge" x1="170" y1="285" x2="142" y2="285" marker-end="url(#dg1-arrow)"/>
+              </svg>
+            </figure>
             <ul>
               <li><b>Daily automation:</b> Task Scheduler generates 1,000 customers and 5,000 transactions, loads them and runs <code>dbt build</code>.</li>
               <li><b>Safe, retryable loads:</b> single-transaction batches with uniqueness and foreign key checks.</li>
@@ -326,10 +353,29 @@
               Production-inspired projects covering an analytics API, a data pipeline and orchestration,
               showing the full path from source data to a Power BI dashboard.
             </p>
-<div class="arch">Sources ─► PostgreSQL ─┬─► FastAPI
-                       └─► dbt models
-                               │
-                  Airflow ─► Power BI</div>
+            <figure class="diagram">
+              <svg viewBox="-2 -2 484 236" role="img" aria-labelledby="dg2-title">
+                <title id="dg2-title">Architecture: data sources load into PostgreSQL, which serves a FastAPI analytics API and feeds dbt models that power a Power BI dashboard. Airflow orchestrates the pipeline, Docker containerises it and GitHub Actions runs CI.</title>
+                <defs>
+                  <marker id="dg2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker>
+                </defs>
+                <!-- row 1 -->
+                <g class="dg-node"><rect x="0" y="0" width="140" height="52"/><text x="70" y="22" text-anchor="middle">Data sources</text><text class="dg-sub" x="70" y="39" text-anchor="middle">files &amp; APIs</text></g>
+                <g class="dg-node"><rect x="170" y="0" width="140" height="52"/><text x="240" y="22" text-anchor="middle">PostgreSQL</text><text class="dg-sub" x="240" y="39" text-anchor="middle">warehouse</text></g>
+                <g class="dg-node"><rect x="340" y="0" width="140" height="52"/><text x="410" y="22" text-anchor="middle">FastAPI</text><text class="dg-sub" x="410" y="39" text-anchor="middle">analytics API</text></g>
+                <line class="dg-edge" x1="140" y1="26" x2="168" y2="26" marker-end="url(#dg2-arrow)"/>
+                <line class="dg-edge" x1="310" y1="26" x2="338" y2="26" marker-end="url(#dg2-arrow)"/>
+                <line class="dg-edge" x1="240" y1="52" x2="240" y2="98" marker-end="url(#dg2-arrow)"/>
+                <!-- row 2 -->
+                <g class="dg-node"><rect x="170" y="100" width="140" height="52"/><text x="240" y="122" text-anchor="middle">dbt models</text><text class="dg-sub" x="240" y="139" text-anchor="middle">staging → marts</text></g>
+                <g class="dg-node dg-key"><rect x="0" y="100" width="140" height="52"/><text x="70" y="122" text-anchor="middle">Power BI</text><text class="dg-sub" x="70" y="139" text-anchor="middle">dashboard</text></g>
+                <line class="dg-edge" x1="170" y1="126" x2="142" y2="126" marker-end="url(#dg2-arrow)"/>
+                <!-- platform band -->
+                <rect class="dg-band" x="0" y="178" width="480" height="52"/>
+                <text class="dg-band-text" x="240" y="199" text-anchor="middle">AIRFLOW · SCHEDULES INGESTION &amp; DBT RUNS</text>
+                <text class="dg-band-text dg-band-sub" x="240" y="217" text-anchor="middle">Docker containers · GitHub Actions CI</text>
+              </svg>
+            </figure>
             <ul class="tags"><li>Python</li><li>FastAPI</li><li>dbt</li><li>Airflow</li><li>Docker</li><li>PostgreSQL</li><li>GitHub Actions</li></ul>
           </article>
         </div>
