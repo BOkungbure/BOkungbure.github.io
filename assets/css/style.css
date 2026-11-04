@@ -80,7 +80,7 @@ p { margin: 0 0 1em; }
   color: var(--muted); font-weight: 500; font-size: .95rem;
 }
 .nav-links a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
-.nav-links a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); }
+.nav-links a[aria-current="true"] { color: var(--accent); background: var(--accent-soft); }
 .icon-btn {
   background: none; border: 1px solid var(--border); color: var(--text);
   width: 38px; height: 38px; border-radius: 10px; cursor: pointer;
@@ -178,25 +178,56 @@ section { padding: 64px 0; }
 .job ul { margin: 10px 0 0; padding-left: 18px; }
 .job li { margin-bottom: 6px; }
 
-/* ===== Power BI reports ===== */
-.report { display: grid; gap: 28px; }
-.report + .report { margin-top: 64px; padding-top: 64px; border-top: 1px solid var(--border); }
-.embed {
-  position: relative; width: 100%; aspect-ratio: 16 / 10;
-  border-radius: var(--radius); overflow: hidden;
-  border: 1px solid var(--border); background: var(--surface-2); box-shadow: var(--shadow);
+/* ===== Power BI horizontal carousel ===== */
+section[id] { scroll-margin-top: 64px; }
+.powerbi { background: var(--surface-2); }
+.carousel-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 28px; }
+.carousel-nav { display: flex; gap: 8px; flex-shrink: 0; }
+.carousel-nav .icon-btn { width: 44px; height: 44px; background: var(--surface); font-size: 1.1rem; }
+.carousel-nav .icon-btn:disabled { opacity: .35; cursor: default; }
+.carousel {
+  --gutter: max(16px, calc((100vw - var(--maxw)) / 2 + 16px));
+  display: flex; gap: 24px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding: 4px var(--gutter) 20px; scroll-padding: 0 var(--gutter);
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
 }
+.carousel:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.carousel::-webkit-scrollbar { height: 8px; }
+.carousel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+.slide {
+  flex: 0 0 min(calc(var(--maxw) - 32px), calc(100vw - 2 * var(--gutter) - 40px));
+  scroll-snap-align: start;
+}
+.slide-inner {
+  height: 100%;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+}
+.slide-text { padding: 24px; display: flex; flex-direction: column; }
+.slide-text p { font-size: .95rem; }
+.ext-link { margin-top: auto; padding-top: 16px; font-weight: 600; }
+.embed { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #1b1464; }
+.slide-inner > .embed { align-self: stretch; height: 100%; min-height: 0; }
 .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.report-pages { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-.report-pages .card { padding: 18px; }
-.report-pages h4 { margin: 0 0 6px; font-size: 1rem; }
-.report-pages p { font-size: .92rem; color: var(--muted); }
-.report-cards .card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
-.report-cards .card img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; border-bottom: 1px solid var(--border); }
-.report-cards .card .body { padding: 20px; }
-.note {
-  border-left: 4px solid var(--accent-2); background: var(--surface);
-  padding: 14px 18px; border-radius: 8px; font-size: .92rem; color: var(--muted);
+.embed.placeholder {
+  display: grid; place-items: center; text-align: center; padding: 24px;
+  background: repeating-linear-gradient(135deg, var(--surface-2) 0 14px, var(--surface) 14px 28px);
+  color: var(--muted);
+}
+.embed.placeholder b { display: block; color: var(--text); font-size: 1.1rem; margin-bottom: 4px; }
+.dots { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+.dots button {
+  width: 10px; height: 10px; padding: 0; border-radius: 999px; border: 0; cursor: pointer;
+  background: var(--border); transition: width .2s, background .2s;
+}
+.dots button[aria-current="true"] { width: 28px; background: var(--accent); }
+@media (max-width: 860px) {
+  .slide-inner { grid-template-columns: 1fr; }
+  .slide { flex-basis: calc(100vw - 2 * var(--gutter) - 24px); }
+  .carousel { gap: 12px; }
 }
 
 /* ===== Projects ===== */

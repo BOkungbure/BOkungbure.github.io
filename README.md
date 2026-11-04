@@ -1,15 +1,10 @@
 # Yomi Okungbure: personal website
 
-A static career site (HTML, CSS and a little JavaScript) hosted free on GitHub Pages at
+A one-page career site (HTML, CSS and a little JavaScript) hosted free on GitHub Pages at
 **https://bokungbure.github.io**.
 
-| File | Page |
-|---|---|
-| `index.html` | About, experience, certifications, contact |
-| `skills.html` | Programming languages and tools |
-| `powerbi.html` | Embedded Power BI reports |
-| `projects.html` | GitHub projects |
-| `assets/` | Stylesheet, script, images and resume PDF |
+`index.html` holds every section in order: About, Skills, Experience, Power BI, Projects and Contact.
+The Power BI section is a horizontal carousel. `assets/` holds the stylesheet, script, images and resume PDF.
 
 ## Preview locally
 
@@ -50,6 +45,7 @@ GitHub Pages redeploys automatically.
 ## Add a Power BI report
 
 1. In the Power BI Service, open the report and choose **File → Embed report → Publish to web (public)**. Copy the `src` URL from the iframe code.
-2. In `powerbi.html`, copy the block between `REPORT: Financial Dashboard` and `END REPORT`, paste it below, and change the title, description, tags, page cards and both `src` / `href` URLs.
+2. In `index.html`, find the `REPORT SLIDE` comment. Copy one `<article class="slide">` block, paste it inside the carousel, and change the title, description, tags and both URLs (`src` and `href`). The dots and arrows update automatically.
+3. Delete the "More reports coming soon" placeholder slide once you have a second report.
 
 Publish to web makes the report and its data **public**. Only use public or synthetic data.

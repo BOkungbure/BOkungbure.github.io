@@ -17,13 +17,14 @@
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html">Yomi <span>Okungbure</span></a>
+      <a class="brand" href="#top">Yomi <span>Okungbure</span></a>
       <ul class="nav-links">
-        <li><a href="index.html" aria-current="page">About</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="powerbi.html">Power BI</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="assets/Yomi_Okungbure_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#powerbi">Power BI</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-right">
         <button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">☾</button>
@@ -32,7 +33,8 @@
     </div>
   </header>
 
-  <main>
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
     <section class="hero">
       <div class="container">
         <span class="eyebrow">Business Intelligence &amp; Data Analyst</span>
@@ -48,17 +50,12 @@
           <span>☁ AWS Cloud Practitioner</span>
         </div>
         <div class="btn-row">
-          <a class="btn btn-primary" href="powerbi.html">View Power BI work →</a>
+          <a class="btn btn-primary" href="#powerbi">View Power BI work ↓</a>
           <a class="btn" href="assets/Yomi_Okungbure_Resume.pdf" target="_blank" rel="noopener">Download resume</a>
           <a class="btn" href="https://www.linkedin.com/in/yomi-okungbure/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="https://github.com/BOkungbure" target="_blank" rel="noopener">GitHub</a>
         </div>
-      </div>
-    </section>
-
-    <section style="padding-top:0">
-      <div class="container">
-        <div class="stats">
+        <div class="stats" style="margin-top:48px">
           <div class="stat"><b>5+</b><span>years in BI &amp; analytics</span></div>
           <div class="stat"><b>30%</b><span>fewer support requests via usage tracking (EA)</span></div>
           <div class="stat"><b>76→98%</b><span>master data accuracy (Cosmetica Labs)</span></div>
@@ -67,7 +64,8 @@
       </div>
     </section>
 
-    <section>
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about">
       <div class="container grid grid-2" style="align-items:start">
         <div>
           <span class="eyebrow">About me</span>
@@ -81,6 +79,9 @@
             Beyond building reports, I train and coach users, present to management and cross-functional teams,
             and streamline reporting processes. I'm currently growing into analytics engineering with dbt,
             PostgreSQL and pipeline automation.
+          </p>
+          <p class="muted" style="margin-top:20px">
+            <b style="color:var(--text)">Education:</b> B.Sc. Information Systems (Computer Science), Babcock University, 2012
           </p>
         </div>
         <div class="card">
@@ -103,7 +104,66 @@
       </div>
     </section>
 
-    <section>
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Skills</span>
+          <h2>Languages &amp; tools</h2>
+          <p class="muted">The languages I use every day to model, query and explain data, and the platforms I build on.</p>
+        </div>
+        <!-- To edit: change the level text and the meter width (e.g. style="width:90%"). -->
+        <div class="grid grid-3">
+          <article class="card skill-card">
+            <h3>SQL <span class="level">Advanced</span></h3>
+            <div class="meter"><i style="width:92%"></i></div>
+            <p class="muted">Star schema design, query and ETL optimisation, data validation. SQL Server, Azure SQL and PostgreSQL.</p>
+          </article>
+          <article class="card skill-card">
+            <h3>DAX <span class="level">Advanced</span></h3>
+            <div class="meter"><i style="width:90%"></i></div>
+            <p class="muted">KPI measures, time intelligence, what-if parameters and risk-based reporting logic in Power BI.</p>
+          </article>
+          <article class="card skill-card">
+            <h3>Power Query (M) <span class="level">Advanced</span></h3>
+            <div class="meter"><i style="width:85%"></i></div>
+            <p class="muted">Data shaping, cleaning and combining sources before modelling in Power BI and Excel.</p>
+          </article>
+          <article class="card skill-card">
+            <h3>Python <span class="level">Intermediate</span></h3>
+            <div class="meter"><i style="width:70%"></i></div>
+            <p class="muted">API scripts, data generation and loading pipelines, analysis in Jupyter with pandas and Matplotlib.</p>
+          </article>
+          <article class="card skill-card">
+            <h3>VBA <span class="level">Intermediate</span></h3>
+            <div class="meter"><i style="width:65%"></i></div>
+            <p class="muted">Automating Excel and Access reporting workflows.</p>
+          </article>
+        </div>
+
+        <div class="grid grid-2" style="margin-top:36px">
+          <div class="chip-group">
+            <h3>BI &amp; visualisation</h3>
+            <ul class="chips"><li>Power BI</li><li>Tableau</li><li>Looker</li><li>SSRS</li><li>Excel (Advanced)</li><li>Matplotlib</li></ul>
+          </div>
+          <div class="chip-group">
+            <h3>Data &amp; cloud</h3>
+            <ul class="chips"><li>SQL Server</li><li>Azure SQL</li><li>PostgreSQL / Neon</li><li>DuckDB</li><li>AWS</li><li>dbt</li><li>Access</li></ul>
+          </div>
+          <div class="chip-group">
+            <h3>Engineering &amp; workflow</h3>
+            <ul class="chips"><li>Git &amp; GitHub</li><li>Jupyter</li><li>FastAPI</li><li>Airflow</li><li>Docker</li><li>Jira</li><li>Agile</li></ul>
+          </div>
+          <div class="chip-group">
+            <h3>Business systems</h3>
+            <ul class="chips"><li>SAP FI/CO</li><li>ERP systems</li><li>Google Sheets / Drive</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Experience</span>
@@ -155,34 +215,128 @@
             </ul>
           </article>
         </div>
+
+        <h3 style="margin-top:48px">Certifications</h3>
+        <ul class="chips">
+          <li><b>PL-300</b> Power BI Data Analyst · 2022</li>
+          <li><b>CBAP</b> Certified Business Analysis Professional · 2021</li>
+          <li><b>AWS</b> Certified Cloud Practitioner · 2024</li>
+          <li><b>ITIL</b> Foundation · 2022</li>
+          <li><b>Udacity</b> Data Analytics Nanodegree · 2022</li>
+          <li><b>dbt</b> Data Build Tool · in progress</li>
+        </ul>
       </div>
     </section>
 
-    <section>
-      <div class="container grid grid-2" style="align-items:start">
-        <div>
-          <span class="eyebrow">Certifications</span>
-          <h2>Credentials</h2>
-          <div class="grid" style="gap:12px">
-            <div class="card" style="padding:16px 20px"><b>PL-300 Microsoft Power BI Data Analyst</b><br><span class="muted">2022</span></div>
-            <div class="card" style="padding:16px 20px"><b>CBAP, Certified Business Analysis Professional</b><br><span class="muted">2021</span></div>
-            <div class="card" style="padding:16px 20px"><b>AWS Certified Cloud Practitioner</b><br><span class="muted">2024</span></div>
-            <div class="card" style="padding:16px 20px"><b>ITIL Foundation</b><br><span class="muted">2022</span></div>
-            <div class="card" style="padding:16px 20px"><b>Data Analytics Nanodegree, Udacity</b><br><span class="muted">2022</span></div>
-            <div class="card" style="padding:16px 20px"><b>dbt (Data Build Tool)</b><br><span class="muted">In progress</span></div>
+    <!-- ===================== POWER BI (horizontal scroll) ===================== -->
+    <section id="powerbi" class="powerbi">
+      <div class="container">
+        <div class="carousel-head">
+          <div class="section-head" style="margin-bottom:0">
+            <span class="eyebrow">Power BI portfolio</span>
+            <h2>Interactive reports</h2>
+            <p class="muted">Scroll sideways or use the arrows to move between reports. Each one is live, so you can use its filters and pages.</p>
+          </div>
+          <div class="carousel-nav">
+            <button class="icon-btn" data-carousel-prev aria-label="Previous report">←</button>
+            <button class="icon-btn" data-carousel-next aria-label="Next report">→</button>
           </div>
         </div>
-        <div>
-          <span class="eyebrow">Education</span>
-          <h2>Education</h2>
-          <div class="card">
-            <b>B.Sc. Information Systems (Computer Science)</b><br>
-            <span class="muted">Babcock University · 2012</span>
+      </div>
+
+      <div class="carousel" data-carousel tabindex="0" aria-label="Power BI reports">
+        <!-- ===== REPORT SLIDE =====
+             To add a report: copy one <article class="slide"> ... </article> block,
+             paste it inside this carousel, and change the title, text, tags and both URLs.
+             The dots under the carousel update automatically. -->
+        <article class="slide">
+          <div class="slide-inner">
+            <div class="embed">
+              <iframe title="Financial Dashboard" loading="lazy" allowfullscreen
+                src="https://app.powerbi.com/view?r=eyJrIjoiOGRiNzBlMWUtNGJmMS00ODQ2LTg1NzEtYzkzYTUyNWY1YzA4IiwidCI6IjFiYjY1Y2MxLTcxMDItNGRlYi05Y2FlLTVlODljMjE5MjMzNCJ9"></iframe>
+            </div>
+            <div class="slide-text">
+              <h3>Financial Dashboard</h3>
+              <p class="muted">
+                A three-page financial performance report: revenue and margin by supplier and team, a monthly
+                income statement with vertical and month-over-month analysis, and a what-if simulator for
+                price, volume and cost scenarios.
+              </p>
+              <ul class="tags"><li>DAX measures</li><li>What-if parameters</li><li>Waterfall chart</li><li>P&amp;L matrix</li><li>Custom theme</li></ul>
+              <a class="ext-link" href="https://app.powerbi.com/view?r=eyJrIjoiOGRiNzBlMWUtNGJmMS00ODQ2LTg1NzEtYzkzYTUyNWY1YzA4IiwidCI6IjFiYjY1Y2MxLTcxMDItNGRlYi05Y2FlLTVlODljMjE5MjMzNCJ9" target="_blank" rel="noopener">Open full screen ↗</a>
+            </div>
           </div>
+        </article>
+        <!-- ===== END REPORT SLIDE ===== -->
+
+        <!-- Placeholder: delete this slide once you have a second report. -->
+        <article class="slide">
+          <div class="slide-inner">
+            <div class="embed placeholder">
+              <div>
+                <b>More reports coming soon</b>
+                <span>New Power BI work is added here as it's published.</span>
+              </div>
+            </div>
+            <div class="slide-text">
+              <h3>Next report</h3>
+              <p class="muted">Want to see something specific? Reports from professional roles contain confidential data and aren't published, but I'm happy to walk through them in an interview.</p>
+              <a class="ext-link" href="#contact">Get in touch →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="container">
+        <div class="dots" data-carousel-dots></div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Projects</span>
+          <h2>Personal projects</h2>
+          <p class="muted">Hands-on work as I grow from data analysis into analytics engineering. All code is on GitHub.</p>
+        </div>
+        <div class="grid grid-2" style="align-items:start">
+          <article class="card project">
+            <h3><a href="https://github.com/BOkungbure/name_generator_duckdb" target="_blank" rel="noopener">Name Generator → Sales Analytics Pipeline ↗</a></h3>
+            <p class="muted">
+              An end-to-end pipeline that generates synthetic customers and sales every day, appends them to a
+              cloud Postgres database, and builds tested dbt models ready for reporting.
+            </p>
+<div class="arch">Python/Faker ─► CSV batches ─► loader ─► Neon
+                                        │
+                          dbt sources + product seed
+                                        │
+                          staging views ─► marts</div>
+            <ul>
+              <li><b>Daily automation:</b> Task Scheduler generates 1,000 customers and 5,000 transactions, loads them and runs <code>dbt build</code>.</li>
+              <li><b>Safe, retryable loads:</b> single-transaction batches with uniqueness and foreign key checks.</li>
+              <li><b>dbt modelling:</b> staging views, sales marts, YAML docs, tests and snapshots for product price history.</li>
+            </ul>
+            <ul class="tags"><li>Python</li><li>SQL</li><li>dbt</li><li>PostgreSQL</li><li>DuckDB</li><li>PowerShell</li><li>pytest</li></ul>
+          </article>
+
+          <article class="card project">
+            <h3><a href="https://github.com/BOkungbure/data-engineering-portfolio" target="_blank" rel="noopener">Data Engineering Portfolio ↗</a></h3>
+            <p class="muted">
+              Production-inspired projects covering an analytics API, a data pipeline and orchestration,
+              showing the full path from source data to a Power BI dashboard.
+            </p>
+<div class="arch">Sources ─► PostgreSQL ─┬─► FastAPI
+                       └─► dbt models
+                               │
+                  Airflow ─► Power BI</div>
+            <ul class="tags"><li>Python</li><li>FastAPI</li><li>dbt</li><li>Airflow</li><li>Docker</li><li>PostgreSQL</li><li>GitHub Actions</li></ul>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- ===================== CONTACT ===================== -->
     <section id="contact">
       <div class="container">
         <div class="cta">
@@ -191,6 +345,7 @@
           <div class="btn-row" style="justify-content:center">
             <a class="btn" href="mailto:b.okungbure@gmail.com">Email me</a>
             <a class="btn btn-ghost" href="https://www.linkedin.com/in/yomi-okungbure/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-ghost" href="assets/Yomi_Okungbure_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
           </div>
         </div>
       </div>
